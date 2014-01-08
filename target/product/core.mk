@@ -27,6 +27,7 @@ PRODUCT_PACKAGES += \
     DownloadProviderUi \
     ExternalStorageProvider \
     KeyChain \
+    Lightbulb \
     PicoTts \
     PacProcessor \
     ProxyHandler \
