@@ -74,13 +74,15 @@ TARGET_arm_CFLAGS :=    -O3 \
                         -funswitch-loops \
                         -fno-tree-vectorize \
                         -fno-inline-functions \
-                        -Wstrict-aliasing=3 \
+                        -Wstrict-aliasing \
                         -Wno-error=strict-aliasing \
                         -fgcse-after-reload \
                         -fno-ipa-cp-clone \
                         -fno-vect-cost-model \
                         -Wno-error=unused-parameter \
-                        -Wno-error=unused-but-set-variable
+                        -Wno-unused-parameter \
+                        -Wno-error=unused-but-set-variable \
+                        -Wno-unused-but-set-variable
 
 # Modules can choose to compile some source as thumb.
 TARGET_thumb_CFLAGS :=  -mthumb \
@@ -90,13 +92,15 @@ TARGET_thumb_CFLAGS :=  -mthumb \
                         -fno-tree-vectorize \
                         -fno-inline-functions \
                         -fno-unswitch-loops \
-                        -Wstrict-aliasing=3 \
+                        -Wstrict-aliasing \
                         -Wno-error=strict-aliasing \
                         -fgcse-after-reload \
                         -fno-ipa-cp-clone \
                         -fno-vect-cost-model \
                         -Wno-error=unused-parameter \
-                        -Wno-error=unused-but-set-variable
+                        -Wno-unused-parameter \
+                        -Wno-error=unused-but-set-variable \
+                        -Wno-unused-but-set-variable
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -134,8 +138,10 @@ TARGET_GLOBAL_CFLAGS += \
 			-D_FORTIFY_SOURCE=2 \
 			-fno-short-enums \
 			$(arch_variant_cflags) \
-            -Wno-error=unused-parameter \
+			-Wno-error=unused-parameter \
+			-Wno-unused-parameter \
 			-Wno-error=unused-but-set-variable \
+			-Wno-unused-but-set-variable \
 			-include $(android_config_h) \
 			-I $(dir $(android_config_h))
 
@@ -144,7 +150,7 @@ TARGET_GLOBAL_CFLAGS += \
 # in gcc-4.4.x.  We also want to disable sincos optimization globally
 # by turning off the builtin sin function.
 ifneq ($(filter 4.6 4.8 4.6.% 4.8.%, $(TARGET_GCC_VERSION)),)
-TARGET_GLOBAL_CFLAGS += -Wno-unused-but-set-variable -fno-builtin-sin \
+TARGET_GLOBAL_CFLAGS += -Wno-unused-but-set-variable -Wno-unused-parameter -fno-builtin-sin \
 			-fno-strict-volatile-bitfields
 endif
 
@@ -175,7 +181,7 @@ TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden -fstrict-aliasing
 TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
 			-g \
-            -Wstrict-aliasing=3 \
+            -Wstrict-aliasing \
             -Wno-error=strict-aliasing \
             -fstrict-aliasing \
             -fgcse-after-reload \
@@ -184,7 +190,9 @@ TARGET_RELEASE_CFLAGS := \
             -fno-ipa-cp-clone \
             -fno-vect-cost-model \
             -Wno-error=unused-parameter \
-            -Wno-error=unused-but-set-variable
+            -Wno-unused-parameter \
+            -Wno-error=unused-but-set-variable \
+            -Wno-unused-but-set-variable
 
 libc_root := bionic/libc
 libm_root := bionic/libm
