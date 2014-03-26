@@ -68,39 +68,16 @@ endif
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-TARGET_arm_CFLAGS :=    -O3 \
+TARGET_arm_CFLAGS :=    -O2 \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing \
-                        -funswitch-loops \
-                        -fno-tree-vectorize \
-                        -fno-inline-functions \
-                        -Wstrict-aliasing \
-                        -Wno-error=strict-aliasing \
-                        -fgcse-after-reload \
-                        -fno-ipa-cp-clone \
-                        -fno-vect-cost-model \
-                        -Wno-error=unused-parameter \
-                        -Wno-unused-parameter \
-                        -Wno-error=unused-but-set-variable \
-                        -Wno-unused-but-set-variable
+                        -fstrict-aliasing    \
+                        -funswitch-loops
 
 # Modules can choose to compile some source as thumb.
 TARGET_thumb_CFLAGS :=  -mthumb \
                         -Os \
                         -fomit-frame-pointer \
-                        -fstrict-aliasing \
-                        -fno-tree-vectorize \
-                        -fno-inline-functions \
-                        -fno-unswitch-loops \
-                        -Wstrict-aliasing \
-                        -Wno-error=strict-aliasing \
-                        -fgcse-after-reload \
-                        -fno-ipa-cp-clone \
-                        -fno-vect-cost-model \
-                        -Wno-error=unused-parameter \
-                        -Wno-unused-parameter \
-                        -Wno-error=unused-but-set-variable \
-                        -Wno-unused-but-set-variable
+                        -fno-strict-aliasing
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -181,18 +158,10 @@ TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden -fstrict-aliasing
 TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
 			-g \
-            -Wstrict-aliasing \
-            -Wno-error=strict-aliasing \
-            -fstrict-aliasing \
-            -fgcse-after-reload \
-            -frerun-cse-after-loop \
-            -frename-registers \
-            -fno-ipa-cp-clone \
-            -fno-vect-cost-model \
-            -Wno-error=unused-parameter \
-            -Wno-unused-parameter \
-            -Wno-error=unused-but-set-variable \
-            -Wno-unused-but-set-variable
+			-Wstrict-aliasing=2 \
+			-fgcse-after-reload \
+			-frerun-cse-after-loop \
+			-frename-registers
 
 libc_root := bionic/libc
 libm_root := bionic/libm
